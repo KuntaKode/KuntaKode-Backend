@@ -1,6 +1,10 @@
+require('dotenv').config();
 const express=require('express');
 const app=express();
 
+const db=require('./config/db');
+
+db(); 
 app.use(express.json());
 
 app.listen(3000, () => {

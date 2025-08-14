@@ -1,10 +1,14 @@
-const{post,updateBlog,deleteBlog}=require('../controller/blogController');
+const { post, updateBlog, deleteBlog, getAllBlogs, getBlogById } = require('../controller/blogController');
 const express = require('express');
-const isAuthenticated = require('../middleware/AuthenticatedMiddleware').isAuthenticated;
-const router=express.Router();
+const { isAuthenticated } = require('../middleware/AuthenticatedMiddleware');
+const { uploadMiddleware } = require('../middleware/upload.middleware');
+const router = express.Router();
 
-router.post('/', isAuthenticated, post);
-router.put('/:id', isAuthenticated, updateBlog);
+router.get('/', getAllBlogs);
+router.get('/:id', getBlogById);
+
+router.post('/', isAuthenticated, uploadMiddleware, post);
+router.put('/:id', isAuthenticated, uploadMiddleware, updateBlog);
 router.delete('/:id', isAuthenticated, deleteBlog);
 
 module.exports = router;

@@ -16,6 +16,10 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    imagePublicId: {
+        type: String,
+        required: false
+    },
     author: {
         type: String,
         required: true,
@@ -25,11 +29,6 @@ const blogSchema = new mongoose.Schema({
         type: String,
         enum: ["AI", "UI/UX", "Software Development", "Education", "Business"],
         required: true
-    },
-    slug: {
-        type: String,
-        unique: true,
-        lowercase: true
     },
     status: {
         type: String,
